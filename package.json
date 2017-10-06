@@ -1,0 +1,19 @@
+{
+  "name": "calvinai",
+  "version": "1.0.0",
+  "description": "The AI for my smart speaker that I named Calvin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/undocumented-code/CalvinAI.git"
+  },
+  "author": "Tucker Osman",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/undocumented-code/CalvinAI/issues"
+  },
+  "homepage": "https://github.com/undocumented-code/CalvinAI#readme"
+}
