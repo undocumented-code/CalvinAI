@@ -17,7 +17,7 @@ const detector = new Detector({
 });
 
 detector.on('silence', function () {
-  console.log('silence');
+  //console.log('silence');
 });
 
 detector.on('sound', function (buffer) {
@@ -41,7 +41,7 @@ detector.on('hotword', function (index, hotword, buffer) {
 
 const mic = record.start({
   threshold: 0,
-  verbose: true,
+  verbose: false,
   silence: '10.0',
   device: 'plughw:2,0'
 });
