@@ -81,7 +81,7 @@ function startRecognition(onHeard) {
         var command = data.results[0].alternatives[0].transcript;
         onHeard(command);
         }
-      };
+      });
     mic.pipe(recognizeStream);
 }
 
