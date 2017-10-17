@@ -9,6 +9,10 @@ const speech = Speech();
 
 const models = new Models();
 
+const encoding = 'LINEAR16';
+const sampleRateHertz = 16000;
+const languageCode = 'en-US';
+
 models.add({
   file: 'heycalvin.pmdl',
   sensitivity: '0.4',
@@ -33,6 +37,15 @@ const mic = record.start({
   device: 'plughw:2,0'
 });
 
+const request = {
+  config: {
+    encoding: encoding,
+    sampleRateHertz: sampleRateHertz,
+    languageCode: languageCode
+  },
+  interimResults: true // If you want interim results, set this to true
+};
+
 detector.on('hotword', function (index, hotword, buffer) {
   console.log('hotword', index, hotword);
   
@@ -46,13 +59,13 @@ detector.on('hotword', function (index, hotword, buffer) {
   file.pipe(reader);
 
   // Create a recognize stream
-const recognizeStream = speech.streamingRecognize(request)
-  .on('error', console.error)
-  .on('data', (data) =>
-    process.stdout.write(
-      (data.results[0] && data.results[0].alternatives[0])
-        ? `Transcription: ${data.results[0].alternatives[0].transcript}\n`
-        : `\n\nReached transcription time limit, press Ctrl+C\n`));
+  const recognizeStream = speech.streamingRecognize(request)
+    .on('error', console.error)
+    .on('data', (data) =>
+      process.stdout.write(
+        (data.results[0] && data.results[0].alternatives[0])
+          ? `Transcription: ${data.results[0].alternatives[0].transcript}\n`
+          : `\n\nReached transcription time limit, press Ctrl+C\n`));
 
   // Start recording and send the microphone input to the Speech API
   mic.pipe(recognizeStream);
