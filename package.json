@@ -20,6 +20,7 @@
     "snowboy": "latest",
     "node-record-lpcm16": "latest",
     "wav": "latest",
-    "speaker": "latest"
+    "speaker": "latest",
+    "google-cloud": "latest"
   }
 }
