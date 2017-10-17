@@ -1,6 +1,9 @@
 const record = require('node-record-lpcm16');
 const Detector = require('snowboy').Detector;
 const Models = require('snowboy').Models;
+const fs = require('fs');
+const wav = require('wav');
+const Speaker = require('speaker');
 
 const models = new Models();
 
@@ -37,6 +40,19 @@ detector.on('hotword', function (index, hotword, buffer) {
   // data after the hotword.
   //console.log(buffer);
   console.log('hotword', index, hotword);
+  
+  var file = fs.createReadStream('listening.wav');
+  var reader = new wav.Reader();
+   
+  // the "format" event gets emitted at the end of the WAVE header 
+  reader.on('format', function (format) {
+   
+    // the WAVE header is stripped from the output of the reader 
+    reader.pipe(new Speaker(format));
+  });
+   
+  // pipe the WAVE file to the Reader instance 
+  file.pipe(reader);
 });
 
 const mic = record.start({

@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/undocumented-code/CalvinAI/issues"
   },
-  "homepage": "https://github.com/undocumented-code/CalvinAI#readme"
+  "homepage": "https://github.com/undocumented-code/CalvinAI#readme",
+  "dependencies": {
+    "snowboy": "latest",
+    "node-record-lpcm16": "latest",
+    "wav": "latest",
+    "speaker": "latest"
+  }
 }
