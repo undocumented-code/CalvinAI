@@ -9,7 +9,7 @@ const models = new Models();
 
 models.add({
   file: 'heycalvin.pmdl',
-  sensitivity: '0.5',
+  sensitivity: '0.3',
   hotwords : 'hey calvin'
 });
 
