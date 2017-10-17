@@ -17,10 +17,11 @@
   },
   "homepage": "https://github.com/undocumented-code/CalvinAI#readme",
   "dependencies": {
-    "snowboy": "latest",
+    "google-cloud": "^0.57.0",
     "node-record-lpcm16": "latest",
-    "wav": "latest",
+    "snowboy": "latest",
     "speaker": "latest",
-    "google-cloud": "latest"
+    "wav": "latest",
+    "pico-speaker": "latest"
   }
 }

@@ -6,12 +6,15 @@ const wav = require('wav');
 const Speaker = require('speaker');
 const Speech = require('@google-cloud/speech');
 const speech = Speech();
+const picoSpeaker = require('pico-speaker');
 
 const models = new Models();
 
 const encoding = 'LINEAR16';
 const sampleRateHertz = 16000;
 const languageCode = 'en-US';
+
+var recognizeStream;
 
 models.add({
   file: 'heycalvin.pmdl',
@@ -43,32 +46,46 @@ const request = {
     sampleRateHertz: sampleRateHertz,
     languageCode: languageCode
   },
-  interimResults: true // If you want interim results, set this to true
+  interimResults: false // If you want interim results, set this to true
 };
 
 detector.on('hotword', function (index, hotword, buffer) {
   console.log('hotword', index, hotword);
+  playWav("listening.wav");
+  startRecognition((data) => {
+    say(data);
+    stopRecognition();
+  });
   
-  var file = fs.createReadStream('listening.wav');
+  // Create a recognize stream
+});
+
+mic.pipe(detector);
+
+function playWav(filename) {
+  var file = fs.createReadStream(filename);
   var reader = new wav.Reader();
-   
+  
   // the "format" event gets emitted at the end of the WAVE header 
   reader.on('format', function (format) {
     reader.pipe(new Speaker(format));
   });
   file.pipe(reader);
+}
 
-  // Create a recognize stream
-  const recognizeStream = speech.streamingRecognize(request)
+function startRecognition(onHeard) {
+  recognizeStream = speech.streamingRecognize(request)
     .on('error', console.error)
-    .on('data', (data) =>
-      process.stdout.write(
-        (data.results[0] && data.results[0].alternatives[0])
-          ? `Transcription: ${data.results[0].alternatives[0].transcript}\n`
-          : `\n\nReached transcription time limit, press Ctrl+C\n`));
+    .on('data', (data) => {
+      if(data.results[0] && data.results[0].alternatives[0]) {
+        var command = data.results[0].alternatives[0].transcript;
+        onHeard(command);
+        }
+      };
+    mic.pipe(recognizeStream);
+}
 
-  // Start recording and send the microphone input to the Speech API
-  mic.pipe(recognizeStream);
-});
-
-mic.pipe(detector);
+function stopRecognition() {
+  mic.unpipe(recognizeStream);
+  delete recognizeStream;
+}
