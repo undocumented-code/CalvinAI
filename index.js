@@ -93,7 +93,7 @@ function stopRecognition() {
 }
 
 function say(text) {
-  speaker.speak(text).then(function() {
+  picoSpeaker.speak(text).then(function() {
     // console.log("done");
   }.bind(this));
 }
