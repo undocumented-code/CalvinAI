@@ -8,6 +8,8 @@ const Speech = require('@google-cloud/speech');
 const speech = Speech();
 const picoSpeaker = require('pico-speaker');
 
+picoSpeaker.init();
+
 const models = new Models();
 
 const encoding = 'LINEAR16';
@@ -88,4 +90,10 @@ function startRecognition(onHeard) {
 function stopRecognition() {
   mic.unpipe(recognizeStream);
   delete recognizeStream;
+}
+
+function say(text) {
+  speaker.speak(text).then(function() {
+    // console.log("done");
+  }.bind(this));
 }
