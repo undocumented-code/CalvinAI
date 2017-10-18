@@ -55,11 +55,10 @@ detector.on('hotword', function (index, hotword, buffer) {
   console.log('hotword', index, hotword);
   playWav("listening.wav");
   startRecognition((data) => {
-    say(data);
     stopRecognition();
+    playWav("notlistening.wav");
+    say(data);
   });
-  
-  // Create a recognize stream
 });
 
 mic.pipe(detector);
@@ -81,6 +80,7 @@ function startRecognition(onHeard) {
     .on('data', (data) => {
       if(data.results[0] && data.results[0].alternatives[0]) {
         var command = data.results[0].alternatives[0].transcript;
+        console.log(command);
         onHeard(command);
         }
       });
