@@ -19,8 +19,7 @@
   "dependencies": {
     "node-record-lpcm16": "latest",
     "snowboy": "latest",
-    "speaker": "latest",
-    "wav": "latest",
-    "pico-speaker": "latest"
+    "pico-speaker": "latest",
+    "request": "latest"
   }
 }
