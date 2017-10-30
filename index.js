@@ -1,3 +1,4 @@
+const { exec } = require('child_process');
 const record = require('node-record-lpcm16');
 const Detector = require('snowboy').Detector;
 const Models = require('snowboy').Models;
@@ -7,6 +8,7 @@ const Speaker = require('speaker');
 const Speech = require('@google-cloud/speech');
 const speech = Speech();
 const picoSpeaker = require('pico-speaker');
+const config = require('./config.json');
 
 picoSpeaker.init();
 
@@ -42,58 +44,71 @@ const mic = record.start({
   device: 'plughw:2,0'
 });
 
-const request = {
-  config: {
-    encoding: encoding,
-    sampleRateHertz: sampleRateHertz,
-    languageCode: languageCode
-  },
-  interimResults: false // If you want interim results, set this to true
-};
+listenForHotword();
 
 detector.on('hotword', function (index, hotword, buffer) {
   console.log('hotword', index, hotword);
-  playWav("listening.wav");
-  startRecognition((data) => {
+  dontListenForHotword();
+  startRecognition(() => {
+    playWav("listening.wav");
+  }, (command) => {
     stopRecognition();
     playWav("notlistening.wav");
-    say(data);
+    say(command);
+    listenForHotword();
   });
 });
 
-mic.pipe(detector);
-
-function playWav(filename) {
-  var file = fs.createReadStream(filename);
-  var reader = new wav.Reader();
-  
-  // the "format" event gets emitted at the end of the WAVE header 
-  reader.on('format', function (format) {
-    reader.pipe(new Speaker(format));
-  });
-  file.pipe(reader);
+function listenForHotword() {
+  mic.pipe(detector);
 }
 
-function startRecognition(onHeard) {
-  recognizeStream = speech.streamingRecognize(request)
-    .on('error', console.error)
-    .on('data', (data) => {
-      if(data.results[0] && data.results[0].alternatives[0]) {
-        var command = data.results[0].alternatives[0].transcript;
-        console.log(command);
-        onHeard(command);
-        }
-      });
-    mic.pipe(recognizeStream);
+function dontListenForHotword() {
+  mic.unpipe(detector);
+}
+
+function playWav(filename) {
+  executeCommand(`aplay ${filename}`);
+}
+
+function startRecognition(onStart, onHeard) {
+  let upOptions = {
+    url: `https://www.google.com/speech-api/full-duplex/v1/up?key=${config.key}&pair=${pair}&output=json&lang=en-US&app=chromium&interim&continuous`,
+    headers: {
+      "Content-Type": "audio/l16; rate=16000",
+      "Referer": "https://docs.google.com"
+    }
+  }
+  mic.pipe(request.post(upOptions));
+  
+  //Create a JSON stream parser
+  const parser = new require("stream").Writable({
+    write: function(chunk, encoding, next) {
+      let obj = JSON.parse(chunk);
+      if(obj.result.length === 0) onStart();
+      //console.log(obj);
+      if(obj && obj.result && obj.result[0] && obj.result[0].alternative && obj.result[0].alternative[0] && obj.result[0].alternative[0].transcript && obj.result[0].final) {
+        console.log(obj.result[0].alternative[0].transcript);
+        onHeard(obj.result[0].alternative[0].transcript)
+      }
+      next();
+    }
+  });
+  
+  //Start the downloading (text) stream:
+  request.get(`https://www.google.com/speech-api/full-duplex/v1/down?key=${config.key}&pair=${pair}&output=json`).pipe(parser);
 }
 
 function stopRecognition() {
-  mic.unpipe(recognizeStream);
-  delete recognizeStream;
+  mic.unpipe();
 }
 
 function say(text) {
   picoSpeaker.speak(text).then(function() {
     // console.log("done");
   }.bind(this));
+}
+
+function executeCommand(cmd) {
+  exec(cmd, (err, stdout, stderr) => {});
 }
