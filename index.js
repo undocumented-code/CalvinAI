@@ -99,7 +99,8 @@ function stopRecognition() {
 }
 
 function say(text) {
-  executeCommand("pico2wave --wave=/tmp/voice1.wav \"${text}\"");
+  console.log("pico2wave --wave=/tmp/voice1.wav '${text}'");
+  executeCommand("pico2wave --wave=/tmp/voice1.wav '${text}'");
   executeCommand("sox /tmp/voice1.wav /tmp/voice2.wav pitch -600")
   playWav("/tmp/voice2.wav");
 }
