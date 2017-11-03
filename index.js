@@ -3,7 +3,6 @@ const record = require('node-record-lpcm16');
 const Detector = require('snowboy').Detector;
 const Models = require('snowboy').Models;
 const request = require('request');
-const picoSpeaker = require('pico-speaker');
 const config = require('./config.json');
 const randomstring = require("randomstring");
 
@@ -102,9 +101,9 @@ function stopRecognition() {
 }
 
 function say(text) {
-  picoSpeaker.speak(text).then(function() {
-    // console.log("done");
-  }.bind(this));
+  executeCommand("pico2wave --wave=/tmp/voice1.wav \"${text}\"");
+  executeCommand("sox /tmp/voice1.wav /tmp/voice2.wav pitch -600")
+  playWav("/tmp/voice2.wav");
 }
 
 function executeCommand(cmd) {
