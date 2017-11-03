@@ -21,6 +21,7 @@
     "snowboy": "latest",
     "pico-speaker": "latest",
     "request": "latest",
-    "randomstring": "latest"
+    "randomstring": "latest",
+    "nan": "latest"
   }
 }
