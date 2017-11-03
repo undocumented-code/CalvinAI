@@ -1,4 +1,4 @@
-const { exec } = require('child_process');
+const { execSync } = require('child_process');
 const record = require('node-record-lpcm16');
 const Detector = require('snowboy').Detector;
 const Models = require('snowboy').Models;
@@ -105,5 +105,5 @@ function say(text) {
 }
 
 function executeCommand(cmd) {
-  exec(cmd, (err, stdout, stderr) => {});
+  execSync(cmd, (err, stdout, stderr) => {});
 }
