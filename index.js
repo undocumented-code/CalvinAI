@@ -6,8 +6,6 @@ const request = require('request');
 const config = require('./config.json');
 const randomstring = require("randomstring");
 
-picoSpeaker.init();
-
 const models = new Models();
 
 const encoding = 'LINEAR16';
