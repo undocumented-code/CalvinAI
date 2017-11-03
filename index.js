@@ -5,6 +5,7 @@ const Models = require('snowboy').Models;
 const request = require('request');
 const picoSpeaker = require('pico-speaker');
 const config = require('./config.json');
+const randomstring = require("randomstring");
 
 picoSpeaker.init();
 
@@ -68,6 +69,7 @@ function playWav(filename) {
 }
 
 function startRecognition(onStart, onHeard) {
+  let pair = randomstring.generate({length: 16, charset: "hex", capitalization: "uppercase"});
   let upOptions = {
     url: `https://www.google.com/speech-api/full-duplex/v1/up?key=${config.key}&pair=${pair}&output=json&lang=en-US&app=chromium&interim&continuous`,
     headers: {
