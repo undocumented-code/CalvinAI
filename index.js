@@ -48,7 +48,7 @@ detector.on('hotword', function (index, hotword, buffer) {
   }, (command) => {
     stopRecognition();
     playWav("notlistening.wav");
-    say(command);
+    if(command) say(command);
     listenForHotword();
   });
 });
@@ -79,7 +79,13 @@ function startRecognition(onStart, onHeard) {
   //Create a JSON stream parser
   const parser = new require("stream").Writable({
     write: function(chunk, encoding, next) {
-      let obj = JSON.parse(chunk);
+      let obj;
+      try {
+        obj = JSON.parse(chunk);
+      } catch(e) {}
+
+      if(!obj) onHeard(null);
+
       if(obj.result.length === 0) onStart();
       //console.log(obj);
       if(obj && obj.result && obj.result[0] && obj.result[0].alternative && obj.result[0].alternative[0] && obj.result[0].alternative[0].transcript && obj.result[0].final) {
