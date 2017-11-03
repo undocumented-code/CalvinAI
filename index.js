@@ -2,8 +2,7 @@ const { exec } = require('child_process');
 const record = require('node-record-lpcm16');
 const Detector = require('snowboy').Detector;
 const Models = require('snowboy').Models;
-const Speech = require('request');
-const speech = Speech();
+const request = require('request');
 const picoSpeaker = require('pico-speaker');
 const config = require('./config.json');
 
