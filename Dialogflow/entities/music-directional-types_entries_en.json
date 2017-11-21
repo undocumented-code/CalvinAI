@@ -1,0 +1,37 @@
+[
+  {
+    "value": "prev",
+    "synonyms": [
+      "Previous",
+      "Last",
+      "Before"
+    ]
+  },
+  {
+    "value": "next",
+    "synonyms": [
+      "next"
+    ]
+  },
+  {
+    "value": "pause",
+    "synonyms": [
+      "pause"
+    ]
+  },
+  {
+    "value": "play",
+    "synonyms": [
+      "play",
+      "resume",
+      "continue"
+    ]
+  },
+  {
+    "value": "skip",
+    "synonyms": [
+      "skip",
+      "jump"
+    ]
+  }
+]

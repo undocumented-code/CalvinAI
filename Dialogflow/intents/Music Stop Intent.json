@@ -1,0 +1,29 @@
+{
+  "id": "0f15a2b6-d36e-4a10-9d4c-da332f01f64e",
+  "name": "Music Stop Intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "music.stop",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1511202509,
+  "fallbackIntent": false,
+  "events": []
+}

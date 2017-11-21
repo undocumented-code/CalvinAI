@@ -1,0 +1,46 @@
+{
+  "id": "939606b8-6a65-43a8-9f6f-948682adcf4f",
+  "name": "Message Intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "message.send",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "214c3f11-97a6-4102-bbfa-eca3d5221eba",
+          "required": false,
+          "dataType": "@sys.given-name",
+          "name": "given-name",
+          "value": "$given-name",
+          "isList": false
+        },
+        {
+          "id": "3e690dc2-7dbf-4af1-88e8-645e4a50df9b",
+          "required": false,
+          "dataType": "@sys.any",
+          "name": "message",
+          "value": "$message",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "I don\u0027t know how to send messages yet. Sorry."
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1511218115,
+  "fallbackIntent": false,
+  "events": []
+}

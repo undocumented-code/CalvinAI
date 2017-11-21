@@ -1,0 +1,169 @@
+[
+  {
+    "id": "03f129dd-5dda-42fb-9b5a-7a691d5be2db",
+    "data": [
+      {
+        "text": "Will it ",
+        "userDefined": false
+      },
+      {
+        "text": "rain",
+        "alias": "weather-types",
+        "meta": "@weather-types",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "tomorrow",
+        "alias": "date",
+        "meta": "@sys.date",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "New York",
+        "alias": "geo-city",
+        "meta": "@sys.geo-city",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "3907c889-ed19-40c6-9026-beb1b63c8cee",
+    "data": [
+      {
+        "text": "What will the weather be like ",
+        "userDefined": false
+      },
+      {
+        "text": "tomorrow",
+        "alias": "date",
+        "meta": "@sys.date",
+        "userDefined": false
+      },
+      {
+        "text": " in ",
+        "userDefined": false
+      },
+      {
+        "text": "London",
+        "alias": "geo-city",
+        "meta": "@sys.geo-city",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "70e8cf2a-05fa-4dcd-a345-8b472ee91b39",
+    "data": [
+      {
+        "text": "What is the weather forecast for ",
+        "userDefined": false
+      },
+      {
+        "text": "London",
+        "alias": "geo-city",
+        "meta": "@sys.geo-city",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "13f3fab8-1746-48c9-b7ab-2cf75424172d",
+    "data": [
+      {
+        "text": "What is the weather forecast?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "559ae171-541b-4471-9442-a6726d9561c1",
+    "data": [
+      {
+        "text": "When will it ",
+        "userDefined": false
+      },
+      {
+        "text": "rain",
+        "alias": "weather-types",
+        "meta": "@weather-types",
+        "userDefined": false
+      },
+      {
+        "text": " next?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "3c3275c2-003d-418f-87a1-92e73526e93f",
+    "data": [
+      {
+        "text": "What will the weather be like ",
+        "userDefined": false
+      },
+      {
+        "text": "tonight",
+        "alias": "date",
+        "meta": "@sys.date",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "36b04790-fde2-4f14-84e3-7ba217a8b84c",
+    "data": [
+      {
+        "text": "What will the weather be like ",
+        "userDefined": false
+      },
+      {
+        "text": "today",
+        "alias": "date",
+        "meta": "@sys.date",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

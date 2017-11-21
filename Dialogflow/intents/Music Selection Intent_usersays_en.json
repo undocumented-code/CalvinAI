@@ -1,0 +1,67 @@
+[
+  {
+    "id": "98edaf07-ae12-4d55-a99e-8049ef4dd7b4",
+    "data": [
+      {
+        "text": "Play some ",
+        "userDefined": false
+      },
+      {
+        "text": "genre",
+        "alias": "genre",
+        "meta": "@sys.music-genre",
+        "userDefined": true
+      },
+      {
+        "text": " music",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "1bca372d-dfcc-4eb4-90b7-a158810be0fb",
+    "data": [
+      {
+        "text": "Play ",
+        "userDefined": false
+      },
+      {
+        "text": "song",
+        "alias": "song",
+        "meta": "@sys.any",
+        "userDefined": true
+      },
+      {
+        "text": " by ",
+        "userDefined": false
+      },
+      {
+        "text": "artist",
+        "alias": "artist",
+        "meta": "@sys.music-artist",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "788fe303-cdf5-4b7a-a98f-2e0e563ef274",
+    "data": [
+      {
+        "text": "Play ",
+        "userDefined": false
+      },
+      {
+        "text": "song",
+        "alias": "song",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  }
+]

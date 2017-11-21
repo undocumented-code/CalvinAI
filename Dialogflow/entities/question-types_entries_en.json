@@ -1,0 +1,44 @@
+[
+  {
+    "value": "who",
+    "synonyms": [
+      "who"
+    ]
+  },
+  {
+    "value": "what",
+    "synonyms": [
+      "what"
+    ]
+  },
+  {
+    "value": "when",
+    "synonyms": [
+      "when"
+    ]
+  },
+  {
+    "value": "where",
+    "synonyms": [
+      "where"
+    ]
+  },
+  {
+    "value": "why",
+    "synonyms": [
+      "why"
+    ]
+  },
+  {
+    "value": "how",
+    "synonyms": [
+      "how"
+    ]
+  },
+  {
+    "value": "define",
+    "synonyms": [
+      "define"
+    ]
+  }
+]

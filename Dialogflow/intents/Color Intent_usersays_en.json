@@ -1,0 +1,38 @@
+[
+  {
+    "id": "e1ae5a66-7639-4a99-9d6f-4639f84d82a7",
+    "data": [
+      {
+        "text": "Set your color to ",
+        "userDefined": false
+      },
+      {
+        "text": "yellow",
+        "alias": "color",
+        "meta": "@sys.color",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511218449
+  },
+  {
+    "id": "065ea3fb-6f04-4fcf-ba95-46c18bdaa526",
+    "data": [
+      {
+        "text": "Show me ",
+        "userDefined": false
+      },
+      {
+        "text": "green",
+        "alias": "color",
+        "meta": "@sys.color",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511218449
+  }
+]

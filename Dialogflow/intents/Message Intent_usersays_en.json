@@ -1,0 +1,108 @@
+[
+  {
+    "id": "37ee4000-b895-427c-9ee7-52bfacafd6f3",
+    "data": [
+      {
+        "text": "Let ",
+        "userDefined": false
+      },
+      {
+        "text": "Timothy",
+        "alias": "given-name",
+        "meta": "@sys.given-name",
+        "userDefined": false
+      },
+      {
+        "text": " know that ",
+        "userDefined": false
+      },
+      {
+        "text": "he\u0027s in big trouble",
+        "alias": "message",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511218115
+  },
+  {
+    "id": "8c69d98d-391a-4f4f-a9a0-5e1e86e00ddf",
+    "data": [
+      {
+        "text": "Tell ",
+        "userDefined": false
+      },
+      {
+        "text": "Susan",
+        "alias": "given-name",
+        "meta": "@sys.given-name",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "I\u0027m on my way",
+        "alias": "message",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511218115
+  },
+  {
+    "id": "dfdbedd3-e4e8-4e52-8d12-df58981c26a7",
+    "data": [
+      {
+        "text": "Tell ",
+        "userDefined": false
+      },
+      {
+        "text": "Bob",
+        "alias": "given-name",
+        "meta": "@sys.given-name",
+        "userDefined": false
+      },
+      {
+        "text": " that ",
+        "userDefined": false
+      },
+      {
+        "text": "I\u0027ll be five minutes late",
+        "alias": "message",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511218115
+  },
+  {
+    "id": "219ddc62-eb2b-4a40-84cd-f66373bf513a",
+    "data": [
+      {
+        "text": "Send ",
+        "userDefined": false
+      },
+      {
+        "text": "Judy",
+        "alias": "given-name",
+        "meta": "@sys.given-name",
+        "userDefined": false
+      },
+      {
+        "text": " a message",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511218115
+  }
+]

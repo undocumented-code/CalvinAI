@@ -1,0 +1,74 @@
+[
+  {
+    "id": "9b183061-2592-4d26-ab77-04e375e21c0f",
+    "data": [
+      {
+        "text": "No more music",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511202509
+  },
+  {
+    "id": "0c64f7ef-21c3-43e5-bd88-db27c2247c6d",
+    "data": [
+      {
+        "text": "Stop",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511202509
+  },
+  {
+    "id": "d717365b-1d9d-4af1-8239-e46f6f547410",
+    "data": [
+      {
+        "text": "Turn music off",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511202509
+  },
+  {
+    "id": "60587de6-0ec9-4007-ae74-012818c8c82c",
+    "data": [
+      {
+        "text": "Turn off the music",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511202509
+  },
+  {
+    "id": "2282b308-9b1e-46f2-9679-5752ca34707e",
+    "data": [
+      {
+        "text": "Be quiet",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511202509
+  },
+  {
+    "id": "c1f140f7-148c-4bdc-b336-e48b431131a5",
+    "data": [
+      {
+        "text": "Stop the music",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511202509
+  }
+]
