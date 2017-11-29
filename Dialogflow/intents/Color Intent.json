@@ -1,0 +1,37 @@
+{
+  "id": "4bfb9293-af48-4b42-83d0-5d580fa521a8",
+  "name": "Color Intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "system.color",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "37acdf7a-dd4c-4cf7-93b2-c8ee17842821",
+          "dataType": "@sys.color",
+          "name": "color",
+          "value": "$color",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Okay, I\u0027ve set my lights to a $color theme."
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1511218449,
+  "fallbackIntent": false,
+  "events": []
+}

@@ -1,0 +1,54 @@
+{
+  "id": "7d8c3832-a157-4e94-9a99-c479eab9e11a",
+  "name": "Music Selection Intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "music.query",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "2ffde79f-b860-4a82-834d-7b3eea5fa7b5",
+          "required": false,
+          "dataType": "@sys.any",
+          "name": "song",
+          "value": "$song",
+          "isList": false
+        },
+        {
+          "id": "7527aeed-2cdd-4b25-a2a1-ed03cade75e5",
+          "required": false,
+          "dataType": "@sys.music-artist",
+          "name": "artist",
+          "value": "$artist",
+          "isList": false
+        },
+        {
+          "id": "173002a0-9592-4c20-b257-f2a956511502",
+          "required": false,
+          "dataType": "@sys.music-genre",
+          "name": "genre",
+          "value": "$genre",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "Okay"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1510927108,
+  "fallbackIntent": false,
+  "events": []
+}

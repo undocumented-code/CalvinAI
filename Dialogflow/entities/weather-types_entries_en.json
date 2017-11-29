@@ -1,0 +1,40 @@
+[
+  {
+    "value": "rain",
+    "synonyms": [
+      "rain",
+      "precipitation",
+      "precipitate"
+    ]
+  },
+  {
+    "value": "sleet",
+    "synonyms": [
+      "sleet"
+    ]
+  },
+  {
+    "value": "snow",
+    "synonyms": [
+      "snow"
+    ]
+  },
+  {
+    "value": "hail",
+    "synonyms": [
+      "hail"
+    ]
+  },
+  {
+    "value": "sunny",
+    "synonyms": [
+      "sunny"
+    ]
+  },
+  {
+    "value": "overcast",
+    "synonyms": [
+      "overcast"
+    ]
+  }
+]

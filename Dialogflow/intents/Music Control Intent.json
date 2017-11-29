@@ -1,0 +1,45 @@
+{
+  "id": "7cc9c688-bf4e-4d13-976c-a7e95ff5b972",
+  "name": "Music Control Intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "music.control",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "5b0eab9c-e770-4c97-ad3e-675c4b629c62",
+          "required": false,
+          "dataType": "@sys.number",
+          "name": "track",
+          "value": "$track",
+          "isList": false
+        },
+        {
+          "id": "8e634c3d-72b9-4e7a-adba-fcfbfdb13a69",
+          "dataType": "@music-directional-types",
+          "name": "music-direction",
+          "value": "$music-direction",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1511202574,
+  "fallbackIntent": false,
+  "events": []
+}

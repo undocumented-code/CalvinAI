@@ -1,0 +1,54 @@
+{
+  "id": "10022c62-8ac6-4068-857d-3a9775227d47",
+  "name": "Weather Intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "weather.query",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "4af99ab1-b926-468e-90d8-9db01d736a04",
+          "required": false,
+          "dataType": "@sys.date",
+          "name": "date",
+          "value": "$date",
+          "isList": false
+        },
+        {
+          "id": "350a7dc7-520f-4b53-9a6c-1ab5c41a0c4b",
+          "required": false,
+          "dataType": "@weather-types",
+          "name": "weather-types",
+          "value": "$weather-types",
+          "isList": false
+        },
+        {
+          "id": "c945f350-f5e6-468c-9913-d1cddafbfe67",
+          "required": false,
+          "dataType": "@sys.geo-city",
+          "name": "geo-city",
+          "value": "$geo-city",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1510926532,
+  "fallbackIntent": false,
+  "events": []
+}

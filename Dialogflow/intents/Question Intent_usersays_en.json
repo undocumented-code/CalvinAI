@@ -1,0 +1,97 @@
+[
+  {
+    "id": "9dbcfbd6-4ccd-4afc-b41c-bba33f35f000",
+    "data": [
+      {
+        "text": "Is",
+        "alias": "question-type",
+        "meta": "@question-types",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "mayonnaise an instrument?",
+        "alias": "query",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0
+  },
+  {
+    "id": "e84b8108-f068-414e-81a7-9e73c4505caf",
+    "data": [
+      {
+        "text": "When",
+        "alias": "question-type",
+        "meta": "@question-types",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "was the last time there was an earth quake?",
+        "alias": "query",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511202811
+  },
+  {
+    "id": "b520378c-d172-4cf0-ba78-862b15b881fa",
+    "data": [
+      {
+        "text": "Where",
+        "alias": "question-type",
+        "meta": "@question-types",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "is St. Louis?",
+        "alias": "query",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511202811
+  },
+  {
+    "id": "cc0d2281-34fd-4239-a37a-04c7adffd04d",
+    "data": [
+      {
+        "text": "Who",
+        "alias": "question-type",
+        "meta": "@question-types",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "won the 1976 World Series?",
+        "alias": "query",
+        "meta": "@sys.any",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511202811
+  }
+]

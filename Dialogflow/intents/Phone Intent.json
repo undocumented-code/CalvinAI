@@ -1,0 +1,46 @@
+{
+  "id": "2934bada-a0ee-4dfe-84c9-0468abdc4af2",
+  "name": "Phone Intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "phone.call",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "beabe9d7-d650-4c65-9d7a-22d6d51c4b8f",
+          "required": false,
+          "dataType": "@sys.given-name",
+          "name": "given-name",
+          "value": "$given-name",
+          "isList": false
+        },
+        {
+          "id": "9fa14f66-4cdc-4835-802a-2eacb2c95f06",
+          "required": false,
+          "dataType": "@sys.phone-number",
+          "name": "phone-number",
+          "value": "$phone-number",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "I can\u0027t call people, as I am not a phone."
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1511217961,
+  "fallbackIntent": false,
+  "events": []
+}

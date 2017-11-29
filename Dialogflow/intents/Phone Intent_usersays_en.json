@@ -1,0 +1,110 @@
+[
+  {
+    "id": "cf073e6c-37f7-474e-8d92-2a0bbe922019",
+    "data": [
+      {
+        "text": "Dial ",
+        "userDefined": false
+      },
+      {
+        "text": "4849284920",
+        "alias": "phone-number",
+        "meta": "@sys.phone-number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511217961
+  },
+  {
+    "id": "32dff7c5-5ac6-465d-905c-86fe88386bde",
+    "data": [
+      {
+        "text": "Dial Mr. ",
+        "userDefined": false
+      },
+      {
+        "text": "Davis",
+        "alias": "given-name",
+        "meta": "@sys.given-name",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511217961
+  },
+  {
+    "id": "3470aa79-3aff-4298-8032-5bc90a51d98d",
+    "data": [
+      {
+        "text": "Dial ",
+        "userDefined": false
+      },
+      {
+        "text": "Johnny",
+        "alias": "given-name",
+        "meta": "@sys.given-name",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511217961
+  },
+  {
+    "id": "fb194312-501a-47d5-b82f-4f1bd4ff6c5b",
+    "data": [
+      {
+        "text": "Call ",
+        "userDefined": false
+      },
+      {
+        "text": "18245550231",
+        "alias": "phone-number",
+        "meta": "@sys.phone-number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511217961
+  },
+  {
+    "id": "35864854-5499-4acb-b46f-cd0020331576",
+    "data": [
+      {
+        "text": "Call Mr. ",
+        "userDefined": false
+      },
+      {
+        "text": "Davis",
+        "alias": "given-name",
+        "meta": "@sys.given-name",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511217961
+  },
+  {
+    "id": "6e958ecd-c909-46e0-be3c-007c0a2c08f2",
+    "data": [
+      {
+        "text": "Call ",
+        "userDefined": false
+      },
+      {
+        "text": "Johnny",
+        "alias": "given-name",
+        "meta": "@sys.given-name",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 1511217961
+  }
+]

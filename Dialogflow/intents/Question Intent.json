@@ -1,0 +1,49 @@
+{
+  "id": "43554639-b337-4422-99a4-e1364cc03449",
+  "name": "Question Intent",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "knowledge.query",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "7004f89f-b88f-4e12-97dd-888d8cf2a752",
+          "required": false,
+          "dataType": "@question-types",
+          "name": "question-type",
+          "value": "$question-type",
+          "isList": false
+        },
+        {
+          "id": "2464456f-f3cb-4a89-9df0-d1f80b62f6bb",
+          "dataType": "@sys.any",
+          "name": "query",
+          "value": "$query",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": [
+            "Let me see if I can find the answer...",
+            "I don\u0027t know, let me ask...",
+            "Interesting question..."
+          ]
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1511202811,
+  "fallbackIntent": false,
+  "events": []
+}
