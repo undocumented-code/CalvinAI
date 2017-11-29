@@ -6,11 +6,14 @@ const request = require('request');
 const config = require('./config.json');
 const randomstring = require("randomstring");
 
+const dialogflow = require('dialogflow');
+const sessionClient = new dialogflow.SessionsClient();
+const sessionPath = sessionClient.sessionPath(config.projectId, randomstring.generate({length: 16, charset: "hex", capitalization: "uppercase"}));
+
 const models = new Models();
 
 const encoding = 'LINEAR16';
 const sampleRateHertz = 16000;
-const languageCode = 'en-US';
 
 var recognizeStream;
 
@@ -48,7 +51,32 @@ detector.on('hotword', function (index, hotword, buffer) {
   }, (command) => {
     stopRecognition();
     playWav("notlistening.wav");
-    if(command) say(command);
+    console.log("HEARD:", command);
+    var request = {
+      session: sessionPath,
+      queryInput: {
+        text: {
+          text: command,
+          languageCode: config.languageCode,
+        },
+      },
+    };
+    sessionClient
+      .detectIntent(request)
+      .then(responses => {
+        console.log('Detected intent');
+        const result = responses[0].queryResult;
+        console.log(`Query: ${result.queryText}`);
+        console.log(`Response: ${result.fulfillmentText}`);
+        if (result.intent) {
+          console.log(`Intent: ${result.intent.displayName}`);
+        } else {
+          console.log(`No intent matched.`);
+        }
+      })
+      .catch(err => {
+        console.error('ERROR:', err);
+      });
     listenForHotword();
   });
 });
@@ -84,7 +112,10 @@ function startRecognition(onStart, onHeard) {
         obj = JSON.parse(chunk);
       } catch(e) {}
 
-      if(!obj) onHeard(null);
+      if(!obj) {
+        onHeard(null);
+        return;
+      }
 
       if(obj.result.length === 0) onStart();
       //console.log(obj);
