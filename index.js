@@ -68,6 +68,7 @@ detector.on('hotword', function (index, hotword, buffer) {
         const result = responses[0].queryResult;
         console.log(`Query: ${result.queryText}`);
         console.log(`Response: ${result.fulfillmentText}`);
+        if(result.fulfillmentText) say(`${result.fulfillmentText}`);
         if (result.intent) {
           console.log(`Intent: ${result.intent.displayName}`);
         } else {
