@@ -22,8 +22,7 @@ module.exports = {
                 let data = JSON.parse(body);
                 let output = "The weather for " + moment(when).calendar().split(" ")[0];
                 if (where) output += `in ${where}`
-                console.log(data);
-                let forecast = data.list.filter(x => moment(when).diff(x.dt*1000, hours) < 2)[0];
+                let forecast = data.list.filter(x => moment(when).diff(x.dt*1000, "hours") < 2)[0];
                 output += "will be " + Math.round(forecast.main.temp) + " degrees with " + forecast.weather[0].description;
                 say(output);
             }
