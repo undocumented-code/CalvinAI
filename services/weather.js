@@ -22,12 +22,13 @@ module.exports = {
                 let data = JSON.parse(body);
                 let output = "The weather for " + moment(when).calendar().split(" ")[0];
                 if (where) output += `in ${where}`
+                console.log(data);
                 let forecast = data.list.filter(x => moment(when).diff(x.dt*1000, hours) < 2)[0];
                 output += "will be " + Math.round(forecast.main.temp) + " degrees with " + forecast.weather[0].description;
                 say(output);
             }
-            if(where) request.get(`http://api.openweathermap.org/data/2.5/weather?q=${where}&appid=${config.weatherKey}&units=imperial`, laterWeatherHandler);
-            else request.get(`http://api.openweathermap.org/data/2.5/weather?lat=${config.location.latitude}&lon=${config.location.longitude}&appid=${config.weatherKey}&units=imperial`, laterWeatherHandler);
+            if(where) request.get(`http://api.openweathermap.org/data/2.5/forecast?q=${where}&appid=${config.weatherKey}&units=imperial`, laterWeatherHandler);
+            else request.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${config.location.latitude}&lon=${config.location.longitude}&appid=${config.weatherKey}&units=imperial`, laterWeatherHandler);
         }
     }
 }
