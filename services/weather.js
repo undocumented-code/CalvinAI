@@ -3,11 +3,13 @@ const moment = require('moment');
 
 module.exports = {
     query: (what, when, where, config, say) => {
+        console.log(when, where);
         var days = (when)?Math.round(moment.duration(moment().diff(moment(when))).asDays()):0;
-        console.log("Weather for ",days," in the future");
+        console.log("Weather for", days, "days in the future");
         if(days==0) {
             let todayWeatherHandler = (error, response, body) => {
                 let data = JSON.parse(body);
+                console.log(data);
                 let output = "The current weather ";
                 if (where) output += `in ${where}`
                 output += "is " + Math.round(data.main.temp) + " degrees with " + data.weather[0].description;
