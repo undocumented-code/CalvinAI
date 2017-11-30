@@ -3,7 +3,7 @@ const moment = require('moment');
 
 module.exports = {
     query: (what, when, where, config, say) => {
-        console.log(when, where);
+        console.log({when, where});
         var days = (when)?Math.round(moment.duration(moment().diff(moment(when))).asDays()):0;
         console.log("Weather for", days, "days in the future");
         if(days==0) {
