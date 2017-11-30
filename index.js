@@ -12,6 +12,8 @@ const dialogflow = require('dialogflow');
 const sessionClient = new dialogflow.SessionsClient();
 const sessionPath = sessionClient.sessionPath(config.projectId, randomstring.generate({length: 16, charset: "hex", capitalization: "uppercase"}));
 
+const cache = {};
+
 const models = new Models();
 
 const encoding = 'LINEAR16';
@@ -43,9 +45,13 @@ const mic = record.start({
   device: 'plughw:2,0'
 });
 
+request('http://freegeoip.net/json/', (error, response, body) => {
+  config.location = JSON.response(body);
+});
+
 listenForHotword();
 
-detector.on('hotword', function (index, hotword, buffer) {
+detector.on('hotword', (index, hotword, buffer) => {
   console.log('hotword', index, hotword);
   dontListenForHotword();
   startRecognition(() => {
@@ -69,7 +75,7 @@ detector.on('hotword', function (index, hotword, buffer) {
         const result = responses[0].queryResult;
         if(result.fulfillmentText) say(`${result.fulfillmentText}`);
         if (result.intent) {
-          intentProcessor(command, result, say);
+          intentProcessor(command, result, say, config);
         } else {
           console.log(`No intent matched.`);
         }

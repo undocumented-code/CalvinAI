@@ -1,12 +1,9 @@
 const weather = require("./services/weather.js");
 
-module.exports = (command, intent, say) => {
+module.exports = (command, intent, say, config) => {
     switch(intent.action) {
         case "weather.query":
-            console.log(intent.parameters.fields.date);
-            console.log(intent.parameters.fields["geo-city"]);
-            console.log(intent.parameters.fields["weather-type"]);
-            say("Weather my dude");
+            weather.query(intent.parameters.fields["weather-type"], intent.parameters.fields.date, intent.parameters.fields["geo-city"], config, say);
             break;
         case "fallback":
             break;
