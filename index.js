@@ -46,7 +46,7 @@ const mic = record.start({
 });
 
 request('http://freegeoip.net/json/', (error, response, body) => {
-  config.location = JSON.response(body);
+  config.location = JSON.parse(body);
 });
 
 listenForHotword();
