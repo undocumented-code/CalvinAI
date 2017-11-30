@@ -6,6 +6,8 @@ const request = require('request');
 const config = require('./config.json');
 const randomstring = require("randomstring");
 
+const intentProcessor = require("./intentProcessor.js");
+
 const dialogflow = require('dialogflow');
 const sessionClient = new dialogflow.SessionsClient();
 const sessionPath = sessionClient.sessionPath(config.projectId, randomstring.generate({length: 16, charset: "hex", capitalization: "uppercase"}));
@@ -67,7 +69,7 @@ detector.on('hotword', function (index, hotword, buffer) {
         const result = responses[0].queryResult;
         if(result.fulfillmentText) say(`${result.fulfillmentText}`);
         if (result.intent) {
-          console.log(result);
+          intentProcessor(command, result, say);
         } else {
           console.log(`No intent matched.`);
         }
