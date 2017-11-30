@@ -64,13 +64,10 @@ detector.on('hotword', function (index, hotword, buffer) {
     sessionClient
       .detectIntent(request)
       .then(responses => {
-        console.log('Detected intent');
         const result = responses[0].queryResult;
-        console.log(`Query: ${result.queryText}`);
-        console.log(`Response: ${result.fulfillmentText}`);
         if(result.fulfillmentText) say(`${result.fulfillmentText}`);
         if (result.intent) {
-          console.log(`Intent: ${result.intent.displayName}`);
+          console.log(result);
         } else {
           console.log(`No intent matched.`);
         }
