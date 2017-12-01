@@ -142,6 +142,7 @@ function stopRecognition() {
 }
 
 function say(text) {
+  console.log("saying:", text)
   executeCommand(`pico2wave --wave=/tmp/voice1.wav "${text}"`);
   executeCommand("sox /tmp/voice1.wav /tmp/voice2.wav pitch -400")
   playWav("/tmp/voice2.wav");
