@@ -21,9 +21,9 @@ module.exports = {
             let laterWeatherHandler = (error, response, body) => {
                 let data = JSON.parse(body);
                 let output = "The weather for " + moment(when).calendar().split(" ")[0];
-                if (where) output += `in ${where}`
+                if (where) output += ` in ${where}`
                 let forecast = data.list.filter(x => moment(when).diff(x.dt*1000, "hours") < 2)[0];
-                output += "will be " + Math.round(forecast.main.temp) + " degrees with " + forecast.weather[0].description;
+                output += " will be " + Math.round(forecast.main.temp) + " degrees with " + forecast.weather[0].description;
                 say(output);
             }
             if(where) request.get(`http://api.openweathermap.org/data/2.5/forecast?q=${where}&appid=${config.weatherKey}&units=imperial`, laterWeatherHandler);
