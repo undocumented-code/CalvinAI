@@ -7,7 +7,7 @@ import sys
 import vlc
 import os
 
-server_address = './gpmusic.sock'
+server_address = '/tmp/gpmusic.sock'
 api = Mobileclient()
 logged_in = api.login(sys.argv[1], sys.argv[2], Mobileclient.FROM_MAC_ADDRESS)
 p = vlc.MediaPlayer()

@@ -4,11 +4,15 @@ var backingProcess, client;
 
 module.exports = {
     init: (config) => {
-        backingProcess = spawn("python",["gpmusic_backing.py", config.google.username, config.google.password]);
-        client = new net.Socket();
-        client.connect("gpmusic.sock", function() {
-            console.log("Connected to gpmusic backing service");
-        });
+        backingProcess = spawn("/usr/bin/python",[__dirname+"/gpmusic_backing.py", config.google.username, config.google.password]);
+        backingProcess.stdout.pipe(process.stdout);
+        setTimeout(() => {
+            console.log(backingProcess);
+            client = new net.Socket();
+            client.connect({path:"/tmp/gpmusic.sock"}, function() {
+                console.log("Connected to gpmusic backing service");
+            });
+        },500);
     },
     query: (params, config, say) => {
         const artist = params.artist || "";

@@ -4,7 +4,7 @@
   "description": "The AI for my smart speaker that I named Calvin",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodejs test.js"
   },
   "repository": {
     "type": "git",

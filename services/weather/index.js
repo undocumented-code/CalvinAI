@@ -4,10 +4,10 @@ const moment = require('moment');
 module.exports = {
     init: () => {},
     query: (params, config, say) => {
-        const what = params["weather-types"];
-        const when = params["date"];
-        const where = params["geo-city"];
-        console.log({when, where});
+        const what = params["weather-types"].stringValue;
+        const when = params["date"].stringValue;
+        const where = params["geo-city"].stringValue;
+        console.log({when, where, say});
         var days = (when)?Math.round(moment.duration(moment(when).diff(moment())).asDays()):0;
         console.log("Weather for", days, "days in the future");
         if(days==0) {

@@ -62,33 +62,37 @@ detector.on('hotword', (index, hotword, buffer) => {
     stopRecognition();
     playWav("notlistening.wav");
     console.log("HEARD:", command);
-    var request = {
-      session: sessionPath,
-      queryInput: {
-        text: {
-          text: command,
-          languageCode: config.languageCode,
-        },
-      },
-    };
-    sessionClient
-      .detectIntent(request)
-      .then(responses => {
-        const result = responses[0].queryResult;
-        if(result.fulfillmentText) say(`${result.fulfillmentText}`);
-        if (result.intent && result.intent.parameters) {
-          intentProcessor.process(command, result, say, config);
-        } else {
-          console.log(`No intent matched.`);
-          say("I had a problem figuring out what you wanted.");
-        }
-      })
-      .catch(err => {
-        console.error('ERROR:', err);
-      });
+    processTranscription(command);
     listenForHotword();
   });
 });
+
+function processTranscription(command) {
+  var request = {
+    session: sessionPath,
+    queryInput: {
+      text: {
+        text: command,
+        languageCode: config.languageCode,
+      },
+    },
+  };
+  sessionClient
+    .detectIntent(request)
+    .then(responses => {
+      const result = responses[0].queryResult;
+      if(result.fulfillmentText) say(`${result.fulfillmentText}`);
+      if (result.intent && result.intent.parameters) {
+        intentProcessor.process(command, result, say, config);
+      } else {
+        console.log(`No intent matched.`);
+        say("I had a problem figuring out what you wanted.");
+      }
+    })
+    .catch(err => {
+      console.error('ERROR:', err);
+    });
+}
 
 function listenForHotword() {
   mic.pipe(detector);
@@ -154,3 +158,5 @@ function say(text) {
 function executeCommand(cmd) {
   execSync(cmd, (err, stdout, stderr) => {});
 }
+
+module.exports = {processTranscription,say};

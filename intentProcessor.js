@@ -1,5 +1,6 @@
-const weather = require("./services/weather");
-const music = require("./service/gpmusic");
+const weather = require("./services/weather/");
+const music = require("./services/gpmusic/");
+const generic = {welcome: () => {}}
 
 module.exports = {
     init: (config) => {
@@ -8,6 +9,6 @@ module.exports = {
     },
     process: (command, intent, say, config) => {
         console.log(JSON.stringify(intent.parameters));
-        eval(intent.action).call(intent.parameters, say, config);
+        eval(intent.action).call(this, intent.parameters.fields, config, say);
     }
 }
