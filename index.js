@@ -49,6 +49,8 @@ request('http://freegeoip.net/json/', (error, response, body) => {
   config.location = JSON.parse(body);
 });
 
+intentProcessor.init(config);
+
 listenForHotword();
 
 detector.on('hotword', (index, hotword, buffer) => {
@@ -74,10 +76,11 @@ detector.on('hotword', (index, hotword, buffer) => {
       .then(responses => {
         const result = responses[0].queryResult;
         if(result.fulfillmentText) say(`${result.fulfillmentText}`);
-        if (result.intent) {
-          intentProcessor(command, result, say, config);
+        if (result.intent && result.intent.parameters) {
+          intentProcessor.process(command, result, say, config);
         } else {
           console.log(`No intent matched.`);
+          say("I had a problem figuring out what you wanted.");
         }
       })
       .catch(err => {
