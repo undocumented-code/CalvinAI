@@ -32,7 +32,6 @@ class ServerSocket(threading.Thread):
             try:
                 while True:
                     data = connection.recv(1024)
-                    print >>sys.stderr, 'received "%s"' % data
                     if data:
                         q.put(data);
                     else:
@@ -47,21 +46,21 @@ class MusicPlayer(threading.Thread):
         is_paused = False
         stationid = None
         if not logged_in:
-            print "error logging in"
+            print "There was an error logging in to google play music"
             sys.exit(0)
         while True:
             try:
                 if(q.empty()):
                     if not p.is_playing() and not mq.empty() and not is_paused:
                         url = api.get_stream_url(mq.get())
-                        print url
+                        #print url
                         p.set_mrl(url)
                         p.play()
                         time.sleep(1)
                         continue
                 else:
                     item = q.get().strip().split(" ",2);
-                    print item;
+                    #print item;
                     if item[0] == "stop":
                         mq.queue.clear()
                         p.stop()
@@ -84,8 +83,8 @@ class MusicPlayer(threading.Thread):
                         results = api.search(item[2])
                         if item[1] == "artist":
                             if not len(results["album_hits"]):
-                                print "no album found"
-                                #say "I couldn't find the song you wanted to play"
+                                #print "no album found"
+                                print "I couldn't find the artist you wanted to play"
                             else:
                                 artistid = results["artist_hits"][0]["artist"]["artistId"]
                                 stationid = api.create_station("Calvin's Station",None,artistid);
@@ -95,19 +94,19 @@ class MusicPlayer(threading.Thread):
                         
                         elif item[1] == "album":
                             if not len(results["album_hits"]):
-                                print "no song found"
-                                #say "I couldn't find the song you wanted to play"
+                                #print "no song found"
+                                print "I couldn't find the album you wanted to play"
                             else:
                                 tracks = api.get_album_info(results["album_hits"][0]["album"]["albumId"])
-                                print tracks
+                                #print tracks
                                 for track in tracks["tracks"]:
                                     mq.put(track["storeId"])
 
                         elif item[1] == "genre":
-                            print results["station_hits"][0]
+                            #print results["station_hits"][0]
                             if not len(results["station_hits"]):
-                                print "no album found"
-                                #say "I couldn't find the song you wanted to play"
+                                #print "no album found"
+                                print "I couldn't find the genre you wanted to play"
                             else:
                                 genreid = results["station_hits"][0]["seed"]["genreId"]
                                 stationid = api.create_station("Calvin's Station",None,None,None,genreid);
@@ -117,12 +116,12 @@ class MusicPlayer(threading.Thread):
                         
                         else:
                             if not len(results["song_hits"]):
-                                print "no song found"
-                                #say "I couldn't find the song you wanted to play"
+                                #print "no song found"
+                                print "I couldn't find the song you wanted to play"
                             else: 
-                                print results["song_hits"][0]["track"]
+                                #print results["song_hits"][0]["track"]
                                 url = api.get_stream_url(results["song_hits"][0]["track"]["storeId"])
-                                print url
+                                #print url
                                 p.set_mrl(url)
                                 p.play()
                     q.task_done()

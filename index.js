@@ -56,6 +56,7 @@ listenForHotword();
 detector.on('hotword', (index, hotword, buffer) => {
   console.log('hotword', index, hotword);
   dontListenForHotword();
+  intentProcessor.process(undefined, {action: "music.attenuate", parameters: {fields:{down:true}}}, undefined, config);
   startRecognition(() => {
     playWav("listening.wav");
   }, (command) => {
@@ -64,6 +65,7 @@ detector.on('hotword', (index, hotword, buffer) => {
     console.log("HEARD:", command);
     processTranscription(command);
     listenForHotword();
+    intentProcessor.process(undefined, {action: "music.attenuate", parameters: {fields:{down:false}}}, undefined, config);
   });
 });
 
@@ -86,7 +88,7 @@ function processTranscription(command) {
         intentProcessor.process(command, result, say, config);
       } else {
         console.log(`No intent matched.`);
-        say("I had a problem figuring out what you wanted.");
+        //say("I had a problem figuring out what you wanted.");
       }
     })
     .catch(err => {
@@ -149,14 +151,16 @@ function stopRecognition() {
 }
 
 function say(text) {
+  intentProcessor.process(undefined, {action: "music.attenuate", parameters: {fields:{down:true}}}, undefined, config);
   console.log("saying:", text)
   executeCommand(`pico2wave --wave=/tmp/voice1.wav "${text}"`);
   executeCommand("sox /tmp/voice1.wav /tmp/voice2.wav pitch -400")
   playWav("/tmp/voice2.wav");
+  intentProcessor.process(undefined, {action: "music.attenuate", parameters: {fields:{down:false}}}, undefined, config);
 }
 
 function executeCommand(cmd) {
   execSync(cmd, (err, stdout, stderr) => {});
 }
 
-module.exports = {processTranscription,say};
+module.exports = {processTranscription,say,clean:intentProcessor.clean};
