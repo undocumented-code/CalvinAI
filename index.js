@@ -49,14 +49,14 @@ request('http://freegeoip.net/json/', (error, response, body) => {
   config.location = JSON.parse(body);
 });
 
-intentProcessor.init(config);
+intentProcessor.init(config, say);
 
 listenForHotword();
 
 detector.on('hotword', (index, hotword, buffer) => {
   console.log('hotword', index, hotword);
   dontListenForHotword();
-  intentProcessor.process(undefined, {action: "music.attenuate", parameters: {fields:{down:true}}}, undefined, config);
+  attenuateMusic(true);
   startRecognition(() => {
     playWav("listening.wav");
   }, (command) => {
@@ -65,7 +65,7 @@ detector.on('hotword', (index, hotword, buffer) => {
     console.log("HEARD:", command);
     processTranscription(command);
     listenForHotword();
-    intentProcessor.process(undefined, {action: "music.attenuate", parameters: {fields:{down:false}}}, undefined, config);
+    attenuateMusic(false);
   });
 });
 
@@ -151,16 +151,24 @@ function stopRecognition() {
 }
 
 function say(text) {
-  intentProcessor.process(undefined, {action: "music.attenuate", parameters: {fields:{down:true}}}, undefined, config);
+  attenuateMusic(true);
   console.log("saying:", text)
   executeCommand(`pico2wave --wave=/tmp/voice1.wav "${text}"`);
-  executeCommand("sox /tmp/voice1.wav /tmp/voice2.wav pitch -400")
+  executeCommand("sox /tmp/voice1.wav /tmp/voice2.wav pitch -350")
   playWav("/tmp/voice2.wav");
-  intentProcessor.process(undefined, {action: "music.attenuate", parameters: {fields:{down:false}}}, undefined, config);
+  attenuateMusic(true);
 }
 
 function executeCommand(cmd) {
   execSync(cmd, (err, stdout, stderr) => {});
+}
+
+function attenuateMusic(down) {
+  internalIntention("music.attenuate", {down});
+}
+
+function internalIntention(action, params) {
+  intentProcessor.process(undefined, {action, parameters: {fields:params}}, () => {}, config);
 }
 
 module.exports = {processTranscription,say,clean:intentProcessor.clean};

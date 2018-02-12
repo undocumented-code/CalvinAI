@@ -18,11 +18,12 @@
   "homepage": "https://github.com/undocumented-code/CalvinAI#readme",
   "dependencies": {
     "dialogflow": "^0.1.0",
+    "moment": "latest",
+    "moment-timezone": "^0.5.14",
     "nan": "latest",
     "node-record-lpcm16": "latest",
     "randomstring": "latest",
     "request": "latest",
-    "snowboy": "latest",
-    "moment": "latest"
+    "snowboy": "latest"
   }
 }
