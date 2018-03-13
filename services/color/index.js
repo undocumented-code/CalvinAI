@@ -1,5 +1,6 @@
 const { spawn } = require('child_process');
 const net = require('net');
+const colors = require('color-name');
 var backingProcess, client;
 
 module.exports = {
@@ -14,7 +15,12 @@ module.exports = {
         return backingProcess;
     },
     set: (params, config, say) => {
-        const color = params.color.stringValue || "";
-        
+        const colorName = params.color.stringValue || ""; 
+        const color = colors[colorName].join(" ");
+        client.write(`color ${color}`);
+    },
+    animate: (params, config, say) => {
+        //Really just for internal stuff like thinking and errors
+        client.write(`animation ${params.name}`);
     }
 }

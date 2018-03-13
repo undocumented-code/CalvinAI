@@ -8,13 +8,12 @@ import spidev
 import ws2812
 import math
 
-current_milli_time = lambda: int(round(time.time() * 1000))
-
 server_address = '/tmp/color.sock'
 q = Queue.Queue()
 # spi = spidev.SpiDev()
 # spi.open(0,0)
 color = [255,255,255]
+run = True
 frame = 0
 
 def animation_spinner():
@@ -36,6 +35,24 @@ def animation_spinner():
     writeframe(spinner)
     return 1;
 
+def animation_bispinner():
+    #First, define the spinner
+    global frame
+
+    spinner = [
+                color,
+                [(x-(255/5)*2) if (x-(255/5)*2)>0 else 0 for x in color],
+                [(x-(255/5)*4) if (x-(255/5)*4)>0 else 0 for x in color],
+                color,
+                [(x-(255/5)*2) if (x-(255/5)*2)>0 else 0 for x in color],
+                [(x-(255/5)*4) if (x-(255/5)*4)>0 else 0 for x in color]
+            ];
+    #rotate by frames
+    spinner = shift(spinner, frame)
+    spinner.append([0,0,0])
+    frame += 1
+    writeframe(spinner)
+    return 1;
 
 def animation_pulse():
     global frame
@@ -59,6 +76,7 @@ def shift(seq, n):
 
 def writeframe(frame):
     print frame
+    #ws2812.write2812(spi, frame)
 
 class ServerSocket(threading.Thread):
     def run(self):
@@ -89,20 +107,42 @@ class ServerSocket(threading.Thread):
 
 class ColorController(threading.Thread):
     def run(self):
+        global animation, run
         while True:
             try:
-                if(q.empty()):
+                if(q.empty() and run):
                     #Step the animation
                     time.sleep(animation())
                 else:
-                    item = q.get();
-
-                    #set the new animation state
+                    item = q.get()
+                    args = item.strip().split(" ")
+                    if(args[0]=="animation"):
+                        #set the new animation state
+                        if(args[1]=="pulse"): 
+                            animation = animation_pulse
+                        elif(args[1]=="spinner"): 
+                            animation = animation_spinner
+                        elif(args[1]=="bispinner"): 
+                            animation = animation_bispinner
+                    elif(args[0]=="color"):
+                        color[0] = int(args[1])
+                        color[1] = int(args[2])
+                        color[2] = int(args[3])
+                    elif(args[0]=="on"): #Turn on the light without animation until next command
+                        run = False
+                        writeframe([color, color, color, color, color, color, color]);
+                    elif(args[0]=="off"): #Turn off lights until next command
+                        run = False
+                        writeframe([[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]])
+                    elif(args[0]=="pause"): #Pause current animation until next command
+                        run = False
+                    elif(args[0]=="resume"): #Resume without changing state (or noop)
+                        run = True
                     q.task_done()
             except:
                 #say something went wrong
                 pass 
 
-animation = animation_pulse
+animation = animation_spinner
 ServerSocket().start()
 ColorController().start()
