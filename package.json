@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/undocumented-code/CalvinAI#readme",
   "dependencies": {
+    "color-names": "^2.0.0",
     "dialogflow": "^0.1.0",
     "moment": "latest",
     "moment-timezone": "^0.5.14",
