@@ -20,7 +20,7 @@ module.exports = {
             client.connect({path:"/tmp/gpmusic.sock"}, function() {
                 console.log("Connected to gpmusic backing service");
             });
-        },2000);
+        },10000);
         return backingProcess;
     },
     query: (params, config, say) => {

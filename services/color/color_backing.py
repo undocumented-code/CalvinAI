@@ -10,8 +10,8 @@ import math
 
 server_address = '/tmp/color.sock'
 q = Queue.Queue()
-# spi = spidev.SpiDev()
-# spi.open(0,0)
+spi = spidev.SpiDev()
+spi.open(1,0)
 color = [255,255,255]
 run = True
 frame = 0
@@ -30,10 +30,10 @@ def animation_spinner():
             ];
     #rotate by frames
     spinner = shift(spinner, frame)
-    spinner.append([0,0,0])
+    spinner.insert(0,[0,0,0])
     frame += 1
     writeframe(spinner)
-    return 1;
+    return 0.5;
 
 def animation_bispinner():
     #First, define the spinner
@@ -49,7 +49,7 @@ def animation_bispinner():
             ];
     #rotate by frames
     spinner = shift(spinner, frame)
-    spinner.append([0,0,0])
+    spinner.insert(0,[0,0,0])
     frame += 1
     writeframe(spinner)
     return 1;
@@ -74,9 +74,12 @@ def shift(seq, n):
     n = n % len(seq)
     return seq[n:] + seq[:n]
 
+def light_perception_function(x):
+    return int(256**(x/256.0))
+
 def writeframe(frame):
     print frame
-    #ws2812.write2812(spi, frame)
+    ws2812.write2812(spi, [map(light_perception_function, x) for x in frame])
 
 class ServerSocket(threading.Thread):
     def run(self):
@@ -101,7 +104,7 @@ class ServerSocket(threading.Thread):
                         q.put(data);
                     else:
                         break
-                    
+
             finally:
                 connection.close()
 
