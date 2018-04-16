@@ -22,5 +22,17 @@ module.exports = {
     animate: (params, config, say) => {
         //Really just for internal stuff like thinking and errors
         client.write(`animation ${params.name}`);
+    },
+    on: (params, config, say) => {
+        client.write(`on`);        
+    },
+    off: (params, config, say) => {
+        client.write(`off`);        
+    },
+    pause: (params, config, say) => {
+        client.write(`pause`);        
+    },
+    resume: (params, config, say) => {
+        client.write(`resume`);        
     }
 }
