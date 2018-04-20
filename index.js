@@ -50,20 +50,24 @@ request('http://freegeoip.net/json/', (error, response, body) => {
 });
 
 intentProcessor.init(config, say);
+internalIntention("color.off");
 
 listenForHotword();
 
 detector.on('hotword', (index, hotword, buffer) => {
   console.log('hotword', index, hotword);
+  internalIntention("color.on");
   dontListenForHotword();
   attenuateMusic(true);
   startRecognition(() => {
     playWav("listening.wav");
   }, (command) => {
+    internalIntention("color.animate", {name: "spinner"});
     stopRecognition();
     playWav("notlistening.wav");
     console.log("HEARD:", command);
     processTranscription(command);
+    internalIntention("color.off");
     listenForHotword();
     attenuateMusic(false);
   });
@@ -108,6 +112,9 @@ function playWav(filename) {
   executeCommand(`aplay ${filename}`);
 }
 
+//Keep track of the streams for when we want to stop sending audio to Google for transcription
+let upStream, downStream;
+
 function startRecognition(onStart, onHeard) {
   let pair = randomstring.generate({length: 16, charset: "hex", capitalization: "uppercase"});
   let upOptions = {
@@ -117,7 +124,7 @@ function startRecognition(onStart, onHeard) {
       "Referer": "https://docs.google.com"
     }
   }
-  mic.pipe(request.post(upOptions));
+  mic.pipe(upStream = request.post(upOptions));
   
   //Create a JSON stream parser
   const parser = new require("stream").Writable({
@@ -143,11 +150,14 @@ function startRecognition(onStart, onHeard) {
   });
   
   //Start the downloading (text) stream:
-  request.get(`https://www.google.com/speech-api/full-duplex/v1/down?key=${config.key}&pair=${pair}&output=json`).pipe(parser);
+  (downStream = request.get(`https://www.google.com/speech-api/full-duplex/v1/down?key=${config.key}&pair=${pair}&output=json`)).pipe(parser);
 }
 
 function stopRecognition() {
   mic.unpipe();
+  upStream && upStream.abort();
+  downStream && downStream.abort();
+  upStream = downStream = undefined;
 }
 
 function say(text) {
@@ -156,7 +166,7 @@ function say(text) {
   executeCommand(`pico2wave --wave=/tmp/voice1.wav "${text}"`);
   executeCommand("sox /tmp/voice1.wav /tmp/voice2.wav pitch -350")
   playWav("/tmp/voice2.wav");
-  attenuateMusic(true);
+  attenuateMusic(false);
 }
 
 function executeCommand(cmd) {

@@ -121,6 +121,7 @@ class ColorController(threading.Thread):
                     args = item.strip().split(" ")
                     if(args[0]=="animation"):
                         #set the new animation state
+                        run = True
                         if(args[1]=="pulse"): 
                             animation = animation_pulse
                         elif(args[1]=="spinner"): 

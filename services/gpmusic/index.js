@@ -1,5 +1,6 @@
 const { spawn } = require('child_process');
 const net = require('net');
+const {existsSync} = require('fs');
 var backingProcess, client;
 
 module.exports = {
@@ -15,12 +16,14 @@ module.exports = {
         backingProcess.on('exit', (code) => {
             console.log("[GPMUSIC]", "Process quit with code: " + code);
         });
-        setTimeout(() => {
+        let connectionAttemptTask = setInterval(() => {
+            if(!existsSync("/tmp/gpmusic.sock")) return;
             client = new net.Socket();
             client.connect({path:"/tmp/gpmusic.sock"}, function() {
                 console.log("Connected to gpmusic backing service");
             });
-        },10000);
+            clearInterval(connectionAttemptTask);
+        },3000);
         return backingProcess;
     },
     query: (params, config, say) => {
